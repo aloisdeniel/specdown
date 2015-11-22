@@ -1,0 +1,21 @@
+# Document
+
+An example paragraph
+
+@progress
+{
+    title: Project progress
+    value: 135.5
+    total: 500.0
+}
+
+## An section
+
+An other paragraph
+
+@progress
+{
+    title: Project progress
+    value: 75
+    total: 100
+}
