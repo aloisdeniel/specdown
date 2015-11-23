@@ -1,4 +1,4 @@
-// Imports module 
+// Imports module
 var specdown = require('../');
 
 // Registers all components
@@ -12,7 +12,9 @@ var render = specdown.component.render('progress',{
 
 console.log(render)
 
+specdown.render('./document.sd')
+
 //Renders document to html
 /*specdown.render('./document.sd', function(err,html){
-	
+
 });*/
