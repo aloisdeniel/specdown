@@ -10,7 +10,7 @@ var ComponentParser = require('./parsers/component.js');
 var DocumentParser = require('./parsers/document.js');
 
 var Component = function(parent, parser){
-	
+
 	this.use = function(filePath){
 		var stats = fs.statSync(filePath);
 		if(stats.isDirectory()){
@@ -49,7 +49,7 @@ var renderComponentElement= function(name,eType){
 	var component = this.components[name];
 	if(!component[eType].content)
 		return null;
-		
+
 	var renderer = this.renderers[eType][component[eType].type];
 	return renderer(component[eType].content);
 }
@@ -72,11 +72,14 @@ var renderDocumentElement= function(docTree,eType){
 var renderDocumentStyle = function(docTree){
 	// Renders css
 	var componentCss = this.renderDocumentElement(docTree,'style');
-	
+
 	// Appends css
 	var css = "";
 	for (var key in componentCss) {
-		css += "/* " + key + " : */ " + componentCss[key] + "\n"
+		var compCss = componentCss[key];
+		if(compCss) {
+			css += "/* " + key + " : */ " + compCss + "\n"
+		}
 	}
 	return css;
 }
@@ -86,11 +89,14 @@ var renderDocumentStyle = function(docTree){
 var renderDocumentScript = function(docTree){
 	// Renders css
 	var componentScript = this.renderDocumentElement(docTree,'script');
-	
+
 	// Appends css
 	var js = "";
 	for (var key in componentScript) {
-		js += "<script>/* " + key + " : */ " + componentScript[key] + "</script>\n"
+		var compScript = componentScript[key];
+		if(compScript){
+			js += "<script>/* " + key + " : */ " + compScript + "</script>\n"
+		}
 	}
 	return js;
 }
@@ -119,11 +125,11 @@ var renderDocumentContent = function(docTree){
 var renderDocument = function(filePath){
 	var data = fs.readFileSync(filePath);
 	var docTree = this.parsers.document.parse(data.toString());
-	
+
 	var css = this.renderDocumentStyle(docTree);
 	var html = this.renderDocumentContent(docTree);
 	var js = this.renderDocumentScript(docTree);
-	
+
 	return {
 		css: css,
 		html: html,
@@ -155,7 +161,7 @@ var Specdown = function() {
 	this.renderDocumentContent = renderDocumentContent;
 	this.renderDocumentScript = renderDocumentScript;
 	this.use = this.component.use;
-	
+
 	// Renderers
 	this.style = new Renderer(this.renderers.style);
 	this.script = new Renderer(this.renderers.script);

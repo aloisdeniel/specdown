@@ -1,0 +1,13 @@
+# Document with charts
+
+An example horizontal bar chart example :
+
+@chartbars
+{
+  total: 1000.0
+  rows:
+    - title: example 1
+      value: 43.3
+    - title: example 2
+      value: 277.5
+}
