@@ -1,0 +1,43 @@
+@{values}-----------------------------------------------------------------------
+rows: []
+total: 100
+
+@{style}----------------------------------------------------------------
+.barchart
+  color #666
+  display table
+  table-layout fixed
+  width 60%
+  max-width 700px
+  height 200px
+  margin 0 auto
+  background-size 100% 50px
+  background-position left top
+
+  & li
+    position relative
+    display table-cell
+    vertical-align bottom
+    height 200px
+
+  & span.value
+    margin 0 1em
+    display block
+    background #aaa
+  & span.title
+      position:absolute
+      left 0
+      right 0
+      top 100%
+      padding 5px 1em 0
+      font-size 11px
+      display block
+      text-align center
+      content attr(title)
+      word-wrap break-word
+@{layout}-----------------------------------------------------------------------
+ul.barchart
+  each row in rows
+    li
+      span.title= row.title
+      span.value(style="height:" + ( 100.0 * row.value / total) + "%;")

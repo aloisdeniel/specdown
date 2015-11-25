@@ -6,7 +6,7 @@ total: 100
 @{style}----------------------------------------------------------------
 $background = #ddd
 $border = #ccc
-$foreground = #f00
+$foreground = #aaa
 $text-color = #fff
 
 .progress

@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><title>"Document"</title><style>/* chartbars : */ .chart dd.row{background:repeating-linear-gradient(to right,#aaa,#aaa 1px,#fff 1px,#fff 5%);width:100%;height:20px;}.chart dd.row .text{width:150px}.chart dd.row .text{background:#f00}
+<!DOCTYPE html><html lang="en"><head><title>"Document"</title><style>/* barchart : */ .barchart{color:#666;display:table;table-layout:fixed;width:60%;max-width:700px;height:200px;margin:0 auto;background-size:100% 50px;background-position:left top;}.barchart li{position:relative;display:table-cell;vertical-align:bottom;height:200px}.barchart span.value{margin:0 1em;display:block;background:#aaa}.barchart span.title{position:absolute;left:0;right:0;top:100%;padding:5px 1em 0;font-size:11px;display:block;text-align:center;content:attr(title);word-wrap:break-word}
 </style></head><body><h1 id="document-with-charts">Document with charts</h1>
-<p>An example horizontal bar chart example :</p>
+<p>An example vertical bar chart example :</p>
 
 
-<dl class="chart"><dt>A title of the graph</dt><dd class="row"><div class="text">row.title</div><div style="width:4.33%;" class="value"></div></dd><dd class="row"><div class="text">row.title</div><div style="width:27.75%;" class="value"></div></dd></dl>
+<ul class="barchart"><li><span class="title">example 1</span><span style="height:4.33%;" class="value"></span></li><li><span class="title">example 2</span><span style="height:27.75%;" class="value"></span></li></ul>
 
 
 

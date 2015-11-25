@@ -1,8 +1,8 @@
 # Document with charts
 
-An example horizontal bar chart example :
+An example vertical bar chart example :
 
-@chartbars
+@barchart
 {
   total: 1000.0
   rows:
