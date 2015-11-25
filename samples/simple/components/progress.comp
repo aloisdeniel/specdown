@@ -4,17 +4,29 @@ value: 50
 total: 100
 
 @{style}----------------------------------------------------------------
-$background = #dddddd
+$background = #ddd
+$border = #ccc
+$foreground = #f00
+$text-color = #fff
 
 .progress
-  background $background
-  width 100%
-  height 20px
+  & .bar
+    background $background
+    border 1px dashed $border
+    width 100%
+    height 20px
+    & .value
+      background $foreground
+      height 12px
+      font-size 11px
+      color $text-color
+      padding 4px
 
 @{layout}-----------------------------------------------------------------------
 .progress
-  .title title
-  .bar(style='width:'+ (value * 1.0 / total) * 100 + '%') value
+  .title= title
+  .bar
+    .value(style='width:'+ (value * 1.0 / total) * 100 + '%')= value + "/" + total
 
 @{script}-----------------------------------------------------------------------
 math =

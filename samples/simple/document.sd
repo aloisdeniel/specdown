@@ -5,7 +5,7 @@ An example paragraph
 @progress
 {
     title: Project progress
-    value: 135.5
+    value: 5
     total: 500.0
 }
 
@@ -15,7 +15,7 @@ An other paragraph
 
 @progress
 {
-    title: Project progress
+    title: Other progress
     value: 75
     total: 100
 }

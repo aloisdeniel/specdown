@@ -137,8 +137,41 @@ var renderDocument = function(filePath){
 	};
 };
 
-var Specdown = function() {
+var writeDocument = function(input, output, templatePath){
+  // Default template
+	if(!templatePath){
+		templatePath = path.resolve(__dirname, "default.layout");
+	}
 
+  // Default output
+	if(!output){
+			var format = path.parse(input);
+			format.ext = ".html"
+			format.base = format.name + format.ext;
+			output = path.format(format);
+	}
+
+	// Rendering document
+	var rendered = this.renderDocument(input);
+
+	// Parsing template
+	var templateData = fs.readFileSync(templatePath);
+	var templateParsed = this.parsers.component.parse(templateData.toString());
+
+	// Css
+	var styleRenderer = this.renderers.style[templateParsed.style.type];
+	rendered.css += styleRenderer(templateParsed.style.content);
+
+	// Html
+	var layoutRenderer = this.renderers.layout[templateParsed.layout.type];
+	var html = layoutRenderer(templateParsed.layout.content, rendered);
+
+	//Writing to file
+	fs.writeFileSync(output, html);
+	console.log("successfuly generated document : " + output);
+};
+
+var Specdown = function() {
 	this.components = {};
 	this.renderers = {
 		layout: {},
@@ -160,6 +193,7 @@ var Specdown = function() {
 	this.renderDocumentStyle = renderDocumentStyle;
 	this.renderDocumentContent = renderDocumentContent;
 	this.renderDocumentScript = renderDocumentScript;
+	this.writeDocument = writeDocument;
 	this.use = this.component.use;
 
 	// Renderers
@@ -183,4 +217,4 @@ var Specdown = function() {
 	this.script.use('coffeescript', function(template){ return coffeescript.compile(template); });
 }
 
-module.exports = new Specdown();
+module.exports = Specdown;
