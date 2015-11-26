@@ -11,3 +11,15 @@ An example vertical bar chart example :
     - title: example 2
       value: 277.5
 }
+
+Another one :
+
+@barchart
+{
+  total: 1000.0
+  rows:
+    - title: example 1
+      value: 43.3
+    - title: example 2
+      value: 277.5
+}

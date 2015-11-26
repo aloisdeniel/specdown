@@ -6,4 +6,4 @@ html(lang="en")
   head
     title "Document"
     style!= css
-  body!= html
+  body!= html + "\n" + js
